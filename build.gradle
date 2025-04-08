@@ -4,6 +4,11 @@ buildscript {
     repositories {
         jcenter()
         google()
+        maven{ url 'https://maven.aliyun.com/repository/central' }
+        maven{ url 'https://maven.aliyun.com/repository/jcenter' }
+        maven{ url 'https://maven.aliyun.com/repository/public'}
+        maven{ url 'https://maven.aliyun.com/repository/google' }
+
     }
     dependencies {
         //noinspection GradleDependency
@@ -17,6 +22,11 @@ allprojects {
     repositories {
         jcenter()
         google()
+        maven{ url 'https://maven.aliyun.com/repository/central' }
+        maven{ url 'https://maven.aliyun.com/repository/jcenter' }
+        maven{ url 'https://maven.aliyun.com/repository/public'}
+        maven{ url 'https://maven.aliyun.com/repository/google' }
+
     }
 }
 
