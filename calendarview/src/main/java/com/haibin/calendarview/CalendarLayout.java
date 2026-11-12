@@ -711,9 +711,10 @@ public class CalendarLayout extends LinearLayout {
                     requestLayout();
                 }
                 hideWeek(true);
-                if (mDelegate.mViewChangeListener != null && isWeekView) {
-                    mDelegate.mViewChangeListener.onViewChange(true);
+                if (mDelegate == null || mDelegate.mViewChangeListener == null || !isWeekView) {
+                   return;
                 }
+                mDelegate.mViewChangeListener.onViewChange(true);
                 isWeekView = false;
 
             }
@@ -798,13 +799,14 @@ public class CalendarLayout extends LinearLayout {
                         public void onAnimationEnd(Animator animation) {
                             super.onAnimationEnd(animation);
                             isAnimating = false;
-                            isWeekView = true;
-                            showWeek();
-                            if (mDelegate == null || mDelegate.mViewChangeListener == null) {
-                                return;
+                            if (mGestureMode == GESTURE_MODE_DISABLED) {
+                                requestLayout();
                             }
-                            mDelegate.mViewChangeListener.onViewChange(false);
-
+                            hideWeek(true);
+                            if (mDelegate != null && mDelegate.mViewChangeListener != null && isWeekView) {
+                                mDelegate.mViewChangeListener.onViewChange(true);
+                            }
+                            isWeekView = false;
                         }
                     });
                     objectAnimator.start();
